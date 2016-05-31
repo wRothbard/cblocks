@@ -1,3 +1,4 @@
+
 local colours = {
 	{"black",      "Black",      "#000000b0"},
 	{"blue",       "Blue",       "#015dbb70"},
@@ -23,6 +24,7 @@ for i = 1, #colours, 1 do
 minetest.register_node("cblocks:wood_" .. colours[i][1], {
 	description = colours[i][2] .. " Wooden Planks",
 	tiles = {"default_wood.png^[colorize:" .. colours[i][3]},
+	paramtype = "light",
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
@@ -40,6 +42,7 @@ minetest.register_craft({
 minetest.register_node("cblocks:stonebrick_" .. colours[i][1], {
 	description = colours[i][2] .. " Stone Brick",
 	tiles = {"default_stone_brick.png^[colorize:" .. colours[i][3]},
+	paramtype = "light",
 	is_ground_content = false,
 	groups = {cracky = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
@@ -74,3 +77,5 @@ minetest.register_craft({
 })
 
 end
+
+print ("[MOD] Cblocks loaded")
