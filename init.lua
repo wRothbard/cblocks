@@ -78,4 +78,14 @@ minetest.register_craft({
 
 end
 
+-- add lucky blocks
+if minetest.get_modpath("lucky_block") then
+lucky_block:add_blocks({
+	{"dro", {"cblocks:wood_"}, 10, true},
+	{"dro", {"cblocks:stonebrick_"}, 10, true},
+	{"dro", {"cblocks:glass_"}, 10, true},
+	{"exp"},
+})
+end
+
 print ("[MOD] Cblocks loaded")

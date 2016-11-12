@@ -9,3 +9,5 @@ Change log:
 
 - 0.1 - Initial release
 - 0.2 - Added coloured glass and fixed violet
+
+Lucky Blocks: 4
