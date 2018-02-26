@@ -27,14 +27,14 @@ local function cblocks_stairs(nodename, def)
 	if stairs_mod or stairsplus_mod then
 
 		local mod, name = nodename:match("(.*):(.*)")
+
 		for groupname, value in pairs(def.groups) do
 
-			if	groupname ~= "cracky" and
-				groupname ~= "choppy" and
-				groupname ~="flammable" and
-				groupname ~="crumbly" and
-				groupname ~="snappy" 
-			then
+			if groupname ~= "cracky"
+			and groupname ~= "choppy"
+			and groupname ~="flammable"
+			and groupname ~="crumbly"
+			and groupname ~="snappy" then
 				def.groups.groupname = nil
 			end
 		end
@@ -99,9 +99,9 @@ minetest.register_craft({
 	}
 })
 
--- glass
+-- glass (no stairs because they dont support transparant nodes)
 
-cblocks_stairs( "cblocks:glass_" .. colours[i][1], {
+minetest.register_node("cblocks:glass_" .. colours[i][1], {
 	description = colours[i][2] .. " Glass",
 	tiles = {"cblocks.png^[colorize:" .. colours[i][3]},
 	drawtype = "glasslike",
