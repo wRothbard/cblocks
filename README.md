@@ -9,5 +9,6 @@ Change log:
 
 - 0.1 - Initial release
 - 0.2 - Added coloured glass and fixed violet
+- 0.3 - Added stairsplus and stairs mod support
 
 Lucky Blocks: 4

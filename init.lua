@@ -17,11 +17,55 @@ local colours = {
 	{"yellow",     "Yellow",     "#e3ff0070"},
 }
 
+local stairs_mod = minetest.get_modpath("stairs")
+local stairsplus_mod = minetest.get_modpath("moreblocks") and stairsplus
+
+local function cblocks_stairs(nodename, def)
+
+	minetest.register_node(nodename, def)
+
+	if stairs_mod or stairsplus_mod then
+
+		local mod, name = nodename:match("(.*):(.*)")
+		for groupname, value in pairs(def.groups) do
+
+			if	groupname ~= "cracky" and
+				groupname ~= "choppy" and
+				groupname ~="flammable" and
+				groupname ~="crumbly" and
+				groupname ~="snappy" 
+			then
+				def.groups.groupname = nil
+			end
+		end
+
+		if stairsplus_mod then
+
+			stairsplus:register_all(mod, name, nodename, {
+				description = def.description,
+				tiles = def.tiles,
+				groups = def.groups,
+				sounds = def.sounds,
+			})
+
+		elseif minetest.get_modpath("stairs") then
+
+			stairs.register_stair_and_slab(name,nodename,
+				def.groups,
+				def.tiles,
+				("%s Stair"):format(def.description),
+				("%s Slab"):format(def.description),
+				def.sounds
+			)
+		end
+	end
+end
+
 for i = 1, #colours, 1 do
 
 -- wood
 
-minetest.register_node("cblocks:wood_" .. colours[i][1], {
+cblocks_stairs("cblocks:wood_" .. colours[i][1], {
 	description = colours[i][2] .. " Wooden Planks",
 	tiles = {"default_wood.png^[colorize:" .. colours[i][3]},
 	paramtype = "light",
@@ -39,7 +83,7 @@ minetest.register_craft({
 
 -- stone brick
 
-minetest.register_node("cblocks:stonebrick_" .. colours[i][1], {
+cblocks_stairs("cblocks:stonebrick_" .. colours[i][1], {
 	description = colours[i][2] .. " Stone Brick",
 	tiles = {"default_stone_brick.png^[colorize:" .. colours[i][3]},
 	paramtype = "light",
@@ -57,7 +101,7 @@ minetest.register_craft({
 
 -- glass
 
-minetest.register_node( "cblocks:glass_" .. colours[i][1], {
+cblocks_stairs( "cblocks:glass_" .. colours[i][1], {
 	description = colours[i][2] .. " Glass",
 	tiles = {"cblocks.png^[colorize:" .. colours[i][3]},
 	drawtype = "glasslike",
