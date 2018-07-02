@@ -18,7 +18,8 @@ local colours = {
 }
 
 local stairs_mod = minetest.get_modpath("stairs")
-local stairsplus_mod = minetest.get_modpath("moreblocks") and stairsplus
+local stairsplus_mod = minetest.get_modpath("moreblocks")
+	and minetest.global_exists("stairsplus")
 
 local function cblocks_stairs(nodename, def)
 
@@ -47,10 +48,20 @@ local function cblocks_stairs(nodename, def)
 				groups = def.groups,
 				sounds = def.sounds,
 			})
+--[[
+		elseif stairs_mod and stairs.mod then
 
-		elseif minetest.get_modpath("stairs") then
+			stairs.register_all(name, nodename,
+				def.groups,
+				def.tiles,
+				def.description,
+				def.sounds,
+				def.alpha
+			)
+]]
+		elseif stairs_mod then
 
-			stairs.register_stair_and_slab(name,nodename,
+			stairs.register_stair_and_slab(name, nodename,
 				def.groups,
 				def.tiles,
 				("%s Stair"):format(def.description),
