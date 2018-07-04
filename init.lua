@@ -59,7 +59,7 @@ local function cblocks_stairs(nodename, def)
 				def.alpha
 			)
 ]]
-		elseif stairs_mod then
+		elseif stairs_mod and not stairs.mod then
 
 			stairs.register_stair_and_slab(name, nodename,
 				def.groups,
