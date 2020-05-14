@@ -1,3 +1,6 @@
+local default_path = minetest.get_modpath("default")
+
+dofile(default_path.."/init.lua")
 
 local colours = {
 	{"black",      "Black",      "#000000b0"},
@@ -96,7 +99,7 @@ minetest.register_craft({
 
 cblocks_stairs("cblocks:stonebrick_" .. colours[i][1], {
 	description = colours[i][2] .. " Stone Brick",
-	tiles = {"default_stone_brick.png^[colorize:" .. colours[i][3]},
+	tiles = {"stone_brick.png^[colorize:" .. colours[i][3]},
 	paramtype = "light",
 	is_ground_content = false,
 	groups = {cracky = 2, stone = 1},
